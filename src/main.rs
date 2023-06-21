@@ -9,21 +9,19 @@ fn main() {
     let number: usize = input.trim().parse().unwrap();
     for i in 0..number {
         let mut memo = HashMap::new();
-        println!("{}", fib_memoization(i, &mut memo));
+        println!("{}", fib_memorization(i, &mut memo));
     }
 
 }
 
-pub fn fib_memoization(n: usize, memo: &mut HashMap<usize, usize>) -> usize {
-    if let Some(v) = memo.get(&n) {
+pub fn fib_memorization(n: usize, memoria: &mut HashMap<usize, usize>) -> usize {
+    if let Some(v) = memoria.get(&n) {
         return *v;
     }
-
     let v = match n {
         0 | 1 => 1,
-        _ => fib_memoization(n-2, memo) + fib_memoization(n-1, memo),
+        _ => fib_memorization(n-2, memoria) + fib_memorization(n-1, memoria),
     };
-
-    memo.insert(n, v);
+    memoria.insert(n, v);
     v
 }
